@@ -1,0 +1,74 @@
+🚨 PASO 10.2: MODELO DE DETECCIÓN DE ANOMALÍAS
+==================================================
+Fecha y hora del análisis: 2025-09-26 23:30:45
+
+🔍 Preparando datos para detección de anomalías...
+   • Registros válidos: 45,971
+   • nameSupplier codificado como proveedor_encoded
+   • nameUnidadBuyer codificado como comprador_encoded
+   • descriptionItem codificado como producto_encoded
+   • Z-score por producto calculado
+   • Características temporales agregadas
+   • Features finales: ['quantityItem', 'proveedor_encoded', 'comprador_encoded', 'producto_encoded', 'zscore_producto', 'day_of_week', 'month']
+   • Registros para análisis: 45,971
+
+📊 ANÁLISIS 1: DETECCIÓN ESTADÍSTICA (Z-SCORE)
+--------------------------------------------------
+   • Umbral Z-score: 3
+   • Anomalías detectadas: 59
+   • Porcentaje de anomalías: 0.13%
+   • Cantidad promedio normal: 131
+   • Cantidad promedio anómala: 60,384
+   • Ratio anómala/normal: 460.4x
+
+🌲 ANÁLISIS 2: ISOLATION FOREST
+-----------------------------------
+   • Tasa de contaminación: 0.010
+   • Anomalías detectadas: 460
+   • Porcentaje de anomalías: 1.00%
+   • Score promedio anomalías: -0.627
+   • Score mínimo (más anómalo): -0.717
+
+📊 ANÁLISIS 3: DETECCIÓN POR PERCENTILES
+----------------------------------------
+   • Q1: 1
+   • Q3: 2
+   • IQR: 1
+   • Límite inferior: -0
+   • Límite superior: 4
+   • Anomalías detectadas: 9,476
+   • Porcentaje de anomalías: 20.61%
+
+🎯 RESUMEN DE DETECCIÓN DE ANOMALÍAS:
+=============================================
+
+🔝 TOP 10 TRANSACCIONES CON MAYOR CANTIDAD:
+--------------------------------------------------
+#   Producto                  Cantidad     Proveedor           
+-----------------------------------------------------------------
+1   TORTILLA DE MAIZ RECIEN..   322,580 Tortilleria Skarleth
+2   300,000 UNIDAD DE SERVI..   300,000 COPIAS E IMPRESOS ..
+3   COMPRA DE ESCRITORIOS, ..   300,000 INDUSTRIAS PANAVIS..
+4   TORTILLAS DE MAIZ           249,999 INVERSIONES DEL AT..
+5   COMPROBANTE DE PAGO         231,000 RILMAC IMPRESORES ..
+6   TORTILLAS DE MAIZ           215,053 Tortilleria Skarleth
+7   Sticker troquelados de ..   150,000 Asociacion Institu..
+8   147,058 TABLETAS AMITRI..   136,362 DROGUERIA GUARDADO..
+9   DIESEL	ASPECTO: LÍQUIDO..   130,708 Inversiones y Dist..
+10  COMPRA DE 103,246 LITRO..   103,246 GASOLINERA TEXACO ..
+
+📊 COMPARACIÓN DE MÉTODOS:
+------------------------------
+   • Z-Score (>3)        :     59 ( 0.13%)
+   • Isolation Forest    :    460 ( 1.00%)
+   • IQR Method          :  9,476 (20.61%)
+
+🎯 CONSENSO ENTRE MÉTODOS:
+   • Anomalías detectadas por ambos métodos: 59
+   • Confianza alta en 59 casos
+
+💡 RECOMENDACIONES:
+-------------------------
+   🚨 ALTA tasa de anomalías detectada
+     → Revisar proceso de captura de datos
+     → Validar criterios de compra
